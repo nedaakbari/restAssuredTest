@@ -1,4 +1,4 @@
-package ir.sample;
+package ir.sample.two;
 
 import io.qameta.allure.*;
 import io.qameta.allure.restassured.AllureRestAssured;
