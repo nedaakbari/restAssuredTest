@@ -1,0 +1,78 @@
+name: Maven and REST Assured Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'  # می‌توانید نسخه جاوا را تغییر دهید اگر لازم باشد
+          distribution: 'adopt'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build and Run REST Assured Tests with Maven
+        run: mvn clean test -DskipTests=false # اجرای تست‌ها با Maven
+
+      - name: Archive REST-Assured results
+        uses: actions/upload-artifact@v2
+        with:
+          name: REST-Assured-results
+          path: target/surefire-reports # گزارش‌های تست‌ها در این مسیر قرار دارند
+
+      - name: Upload REST-Assured results to GitHub
+        uses: actions/upload-artifact@v2
+        with:
+          name: REST-Assured-results
+          path: target/surefire-reports # گزارش‌های تست‌ها در این مسیر قرار دارند
+
+
+
+# name: Gradle and REST Assured Tests
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#       - name: Setup Java
+#         uses: actions/setup-java@v3
+#         with:
+#           java-version: '11'
+#           distribution: 'adopt'
+#       - name: Build and Run REST Assured Tests with Gradle
+#         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+#         with:
+#           arguments: build
+#       - name: Archive REST-Assured results
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: REST-Assured-results
+#           path: build/reports/tests/test
+#       - name: Upload REST-Assured results to GitHub
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: REST-Assured-results
+#           path: build/reports/tests/test
