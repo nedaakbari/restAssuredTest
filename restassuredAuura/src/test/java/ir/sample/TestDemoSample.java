@@ -2,6 +2,7 @@ package ir.sample;
 
 import io.qameta.allure.*;
 import io.qameta.allure.restassured.AllureRestAssured;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,14 +12,18 @@ import static org.hamcrest.Matchers.equalTo;
 @Feature("Verify that the Get and POST API returns correctly")
 public class TestDemoSample {
 
+//    @BeforeClass
+//    public void setup() {// تنظیم فیلتر Allure برای همه تست‌ها در این کلاس
+//        io.restassured.RestAssured.filters(new AllureRestAssured());
+//    }
+
     @Test(description = "To get the details of post with id 1", priority = 1)
     @Story("GET Request with Valid post id")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.TRIVIAL)
     @Description("Test Description : Verify that the GET API returns correctly")
     public void verifyGetAPI() {
         // Given
         given()
-                .filter(new AllureRestAssured()) // Set up the AllureRestAssured filter to display request and response information in the test report
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 // When
@@ -36,12 +41,11 @@ public class TestDemoSample {
 
     @Test(description = "To create a new post", priority = 2)
     @Story("POST Request")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Test Description : Verify that the post API returns correctly")
-    public void verifyPostAPI() {        // Given
+    public void verifyPostAPI() {
+        // Given
         given()
-                .filter(new AllureRestAssured())
-                // Set up the AllureRestAssured filter to display request and response information in the test report
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 // When
@@ -57,19 +61,4 @@ public class TestDemoSample {
                 .body("title", equalTo("foo"))
                 .body("body", equalTo("bar"));
     }
-
-//    @Test(description = "failed Test", priority = 1)
-//    @Story("should be failed")
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("Test Description : i want to test")
-//    public void FailedAPISample() {
-//        given()
-//                .filter(new AllureRestAssured())
-//                .baseUri("https://jsonplaceholder.typicode.com")
-//                .header("Content-Type", "application/json")
-//                .when()
-//                .get("/posts/1")
-//                .then()
-//                .statusCode(400);
-//    }
 }
