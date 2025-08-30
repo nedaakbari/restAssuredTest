@@ -5,16 +5,15 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
-@Epic("REST APIs sample")
-@Feature("API Fails ")
-public class TestDemo {
+@Epic("REST APIs sample2")
+@Feature("API Fails2 ")
+public class TestSample {
 
-    @Test(description = "failed Test", priority = 1)
-    @Story("should be failed")
+    @Test(description = "failed Test2", priority = 1)
+    @Story("should be failed2")
     @Severity(SeverityLevel.NORMAL)
-    @Description("Test Description : i want to test")
+    @Description("Test Description : i want to test2")
     public void FailedAPISample() {
         given()
                 .filter(new AllureRestAssured())
