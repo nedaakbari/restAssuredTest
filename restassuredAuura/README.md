@@ -52,11 +52,31 @@
 * mvn allure:serve
 
 
-####2. تنظیمات برای REST Assured و Allura
-باید تنظیمات مربوط به REST Assured را در پروژه انجام دهید تا بتوانید تست‌های خود را با استفاده از Allura اجرا کنید. این تنظیمات معمولاً در کلاس‌های تست شما انجام می‌شود.
-* your_api/actuator
+####3. CI/CD integration //integration github action
+Use github action as an example, and other CI tools similarly* your_api/actuator
 * your_api/actuator/health`
 * 
+
+####Maven dependency
+مطمئن شوید که در پروژه Maven خود از Surefire Plugin برای اجرای تست‌ها و گزارش‌گیری استفاده کرده‌اید. این پیکربندی به صورت پیش‌فرض برای اجرای تست‌ها و تولید گزارش‌ها فعال است، اما در صورتی که به پیکربندی خاص نیاز دارید، می‌توانید آن را در فایل pom.xml تنظیم کنید.
+```xml
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+                <reportsDirectory>target/surefire-reports</reportsDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+```
+این پیکربندی باعث می‌شود که گزارش‌های تست‌ها در مسیر target/surefire-reports ذخیره شوند.
+
 
 ####Actuator API
 For using actuator after adding dependency and configure the actuator we can access the actuator by this pattern
