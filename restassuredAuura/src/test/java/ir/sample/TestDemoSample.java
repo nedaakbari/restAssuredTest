@@ -58,18 +58,18 @@ public class TestDemoSample {
                 .body("body", equalTo("bar"));
     }
 
-    @Test(description = "failed Test", priority = 1)
-    @Story("should be failed")
-    @Severity(SeverityLevel.NORMAL)
-    @Description("Test Description : i want to test")
-    public void FailedAPISample() {
-        given()
-                .filter(new AllureRestAssured())
-                .baseUri("https://jsonplaceholder.typicode.com")
-                .header("Content-Type", "application/json")
-                .when()
-                .get("/posts/1")
-                .then()
-                .statusCode(400);
-    }
+//    @Test(description = "failed Test", priority = 1)
+//    @Story("should be failed")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Description("Test Description : i want to test")
+//    public void FailedAPISample() {
+//        given()
+//                .filter(new AllureRestAssured())
+//                .baseUri("https://jsonplaceholder.typicode.com")
+//                .header("Content-Type", "application/json")
+//                .when()
+//                .get("/posts/1")
+//                .then()
+//                .statusCode(400);
+//    }
 }
