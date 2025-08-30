@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="Parallel Test Suite" parallel="tests" thread-count="4">-->
+<!--    <test name="Sample Test 1">-->
+<!--        <classes>-->
+<!--            <class name="ir.sample.TestDemo"/>-->
+<!--            <class name="ir.sample.TestDemoSample"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Sample Test 2">-->
+<!--        <classes>-->
+<!--            <class name="ir.sample.TestDemo"/>-->
+<!--            <class name="ir.sample.TestSample"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--</suite>-->
+
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="E:/test/restAssuredTest/restassuredAuura">
+<!--        <packages>-->
+<!--            <package name="ir.sample.TestDemo" retryAnalyzer="com.example.retry.RetryAnalyzer"/>-->
+<!--        </packages>-->
+        <classes>
+            <class name="ir.sample.TestDemo">
+                <methods>
+                    <include name="FailedAPISample"/>
+                </methods>
+            </class>
+            <class name="ir.sample.TestDemoSample">
+                <methods>
+                    <include name="verifyGetAPI"/>
+                    <include name="verifyPostAPI"/>
+                </methods>
+            </class>
+            <class name="ir.sample.TestSample">
+                <methods>
+                    <include name="FailedAPISample1"/>
+                    <include name="FailedAPISample"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.ApiTest">
+                <methods>
+                    <include name="testGetApi1"/>
+                    <include name="testGetApi2"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.BasicResponseDemo">
+                <methods>
+                    <include name="response"/>
+                    <include name="genericHeader"/>
+                    <include name="responseWithChain"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.PathParamDemoTest">
+                <methods>
+                    <include name="Path"/>
+                    <include name="withParam"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.TestBasicResponseBodyDemo">
+                <methods>
+                    <include name="Path"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.TestPeekAndPrintDemo">
+                <methods>
+                    <include name="peekSample"/>
+                    <include name="prettyPeekSample"/>
+                    <include name="print"/>
+                    <include name="printPeekSample"/>
+                    <include name="logSample"/>
+                </methods>
+            </class>
+            <class name="ir.sample.one.TestQueryParamDemo">
+                <methods>
+                    <include name="withoutParam"/>
+                    <include name="withoutParam2"/>
+                    <include name="withParam"/>
+                    <include name="dataDrivenTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

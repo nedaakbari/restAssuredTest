@@ -1,7 +1,6 @@
 package ir.sample;
 
 import io.qameta.allure.*;
-import io.qameta.allure.restassured.AllureRestAssured;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -14,9 +13,8 @@ public class TestSample {
     @Story("should be failed2")
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : i want to test2")
-    public void FailedAPISample1() {
+    public void FailedAPISample1() throws InterruptedException {
         given()
-                .filter(new AllureRestAssured())
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 .when()
@@ -25,13 +23,12 @@ public class TestSample {
                 .statusCode(200);
     }
 
-    @Test(description = "failed Test2", priority = 1)
+    @Test(description = "failed Test2", priority = 1, retryAnalyzer = RetryAnalyzer.class)
     @Story("should be failed2")
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : i want to test2")
-    public void FailedAPISample() {
+    public void FailedAPISample() throws InterruptedException {
         given()
-                .filter(new AllureRestAssured())
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 .when()

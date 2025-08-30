@@ -14,9 +14,8 @@ public class TestDemo {
     @Story("should be failed")
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : i want to test")
-    public void FailedAPISample() {
+    public void FailedAPISample() throws InterruptedException {
         given()
-                .filter(new AllureRestAssured())
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 .when()

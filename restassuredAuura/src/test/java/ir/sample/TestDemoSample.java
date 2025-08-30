@@ -15,10 +15,9 @@ public class TestDemoSample {
     @Story("GET Request with Valid post id")
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : Verify that the GET API returns correctly")
-    public void verifyGetAPI() {
+    public void verifyGetAPI() throws InterruptedException {
         // Given
         given()
-                .filter(new AllureRestAssured()) // Set up the AllureRestAssured filter to display request and response information in the test report
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
                 // When
@@ -40,7 +39,6 @@ public class TestDemoSample {
     @Description("Test Description : Verify that the post API returns correctly")
     public void verifyPostAPI() {        // Given
         given()
-                .filter(new AllureRestAssured())
                 // Set up the AllureRestAssured filter to display request and response information in the test report
                 .baseUri("https://jsonplaceholder.typicode.com")
                 .header("Content-Type", "application/json")
