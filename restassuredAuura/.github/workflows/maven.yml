@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '11'  # می‌توانید نسخه جاوا را تغییر دهید اگر لازم باشد
+          java-version: '21'  # می‌توانید نسخه جاوا را تغییر دهید اگر لازم باشد
           distribution: 'adopt'
 
       - name: Cache Maven dependencies
@@ -31,13 +31,13 @@ jobs:
         run: mvn clean test -DskipTests=false # اجرای تست‌ها با Maven
 
       - name: Archive REST-Assured results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: REST-Assured-results
           path: target/surefire-reports # گزارش‌های تست‌ها در این مسیر قرار دارند
 
       - name: Upload REST-Assured results to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: REST-Assured-results
           path: target/surefire-reports # گزارش‌های تست‌ها در این مسیر قرار دارند
